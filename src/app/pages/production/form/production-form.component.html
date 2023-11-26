@@ -1,0 +1,92 @@
+<form fxLayout="column" fxLayoutAlign="start stretch" [formGroup]="resourceForm" autocomplete="off" novalidate
+  (ngSubmit)="submitForm()">
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="40" appearance="fill">
+      <mat-label>Status:</mat-label>
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let st of status" [value]="st">
+          {{st}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="56" appearance="fill">
+      <mat-label>Data:</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="productionDate">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <mat-label>Atividade:</mat-label>
+      <mat-select formControlName="task">
+        <mat-option *ngFor="let task of tasks$ | async" [value]="task.name">
+          {{task.name | uppercase}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <mat-label>Torre:</mat-label>
+      <mat-select formControlName="tower">
+        <mat-option *ngFor="let tower of towers$ | async" [value]="tower.tower">
+          {{tower.tower | uppercase}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <mat-label>Equipe:</mat-label>
+      <mat-select formControlName="team">
+        <mat-option *ngFor="let team of teams$ | async" [value]="team.name">
+          {{team.name | uppercase}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+
+    <mat-form-field fxFlex="30" appearance="fill">
+      <mat-label>Tempo:</mat-label>
+      <mat-select formControlName="weather">
+        <mat-option *ngFor="let w of weather" [value]="w">
+          {{w}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="66" appearance="fill">
+      <mat-label>Comentários:</mat-label>
+      <textarea matInput placeholder="Ex. Seus coment..." formControlName="comments"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxFlexOffset="2" fxLayout="row" fxLayoutAlign="space-between  start">
+    <div fxFlex="45" appearance="fill">
+      <mat-label>Hora inicial:</mat-label>
+      <ngx-timepicker-field [format]="24" [controlOnly]="true" formControlName="startTimeOfDay"
+        id="activityStartTime"></ngx-timepicker-field>
+    </div>
+
+    <div fxFlex="45" appearance="fill">
+      <mat-label>Hora final:</mat-label>
+      <ngx-timepicker-field [format]="24" [controlOnly]="true" formControlName="endTimeOfDay" id="activityEndTime">
+      </ngx-timepicker-field>
+    </div>
+  </div>
+
+  <div fxFlex="100" fxFlexOffset="10" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card-actions appearance="fill">
+      <button type="submit" mat-raised-button color="primary" [disabled]="!resourceForm.valid">{{buttonText}}</button>
+    </mat-card-actions>
+  </div>
+
+</form>

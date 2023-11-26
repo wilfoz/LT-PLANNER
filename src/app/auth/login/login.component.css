@@ -1,0 +1,23 @@
+.content-main {
+  height: 100vh;
+  width: 100vw;
+}
+
+.content-left {
+  height: 100%;
+  width: 100%;
+  background-image: url('../../../assets/img/bghome.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #ffffff
+}
+
+.header img {
+  margin: 3rem;
+  width: 50px;
+  display: block;
+}
+
+.login-wrapper {
+  background-color: #3d84a8;
+}

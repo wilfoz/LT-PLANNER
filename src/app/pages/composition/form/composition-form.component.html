@@ -1,0 +1,46 @@
+<mat-stepper orientation="vertical">
+  <mat-step>
+
+    <ng-template matStepLabel>Equipe</ng-template>
+    <ng-template matStepContent>
+      <div align="center" layout="row" layout-align="center center">
+        <mat-card class="info-card mat-elevation-z8" flex="100" style="margin: 20px">
+          <mat-card-content fxLayout="column" fxLayoutAlign="stretch">
+            <app-team-form [action]="action"></app-team-form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <button mat-button matStepperNext>Next</button>
+    </ng-template>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Funcionário</ng-template>
+    <ng-template matStepContent>
+
+      <div align="center" layout="row" layout-align="center center">
+        <mat-card class="info-card mat-elevation-z8" flex="100" style="margin: 20px">
+          <mat-card-content fxLayout="column" fxLayoutAlign="stretch">
+            <app-employee-form [action]="action"></app-employee-form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </ng-template>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Equipamento</ng-template>
+
+    <div align="center" layout="row" layout-align="center center">
+      <mat-card class="info-card mat-elevation-z8" flex="100" style="margin: 20px">
+        <mat-card-content fxLayout="column" fxLayoutAlign="stretch">
+          <app-equipment-form [action]="action"></app-equipment-form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <button mat-button matStepperPrevious>Back</button>
+  </mat-step>
+</mat-stepper>

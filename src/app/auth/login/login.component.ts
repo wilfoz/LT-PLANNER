@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.form.getRawValue())
     this.store.dispatch(fromAuthAction.Login(this.form.getRawValue()));
   }
 

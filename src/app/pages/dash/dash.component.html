@@ -1,0 +1,54 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Dashboard</h1>
+  <mat-grid-list cols="{{ ( cards | async )?.columns }}" rowHeight="200px">
+    <!--Mini Cards-->
+    <mat-grid-tile *ngFor="let i of [1, 2, 3, 4]" [colspan]="( cards | async )?.miniCard?.cols"
+      [rowspan]="( cards | async )?.miniCard?.rows">
+      <app-card title="{{headersCards[i-1]}}">
+        <div>
+          KPI
+        </div>
+      </app-card>
+    </mat-grid-tile>
+
+    <!--Charts-->
+    <mat-grid-tile [colspan]="( cards | async )?.chart?.cols" [rowspan]="( cards | async )?.chart?.rows">
+      <app-card title="KPI-1">
+        <div>
+          <app-bar-chart></app-bar-chart>
+        </div>
+      </app-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="( cards | async )?.chart?.cols" [rowspan]="( cards | async )?.chart?.rows">
+      <app-card title="KPI-2">
+        <div>
+          <app-pie-chart></app-pie-chart>
+        </div>
+      </app-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="( cards | async )?.chart?.cols" [rowspan]="( cards | async )?.chart?.rows">
+      <app-card title="KPI-3">
+        <div>
+          <app-line-chart></app-line-chart>
+        </div>
+      </app-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="( cards | async )?.chart?.cols" [rowspan]="( cards | async )?.chart?.rows">
+      <app-card title="KPI-4">
+        <div>
+          <app-pie-chart></app-pie-chart>
+        </div>
+      </app-card>
+    </mat-grid-tile>
+
+    <!--Table-->
+    <mat-grid-tile [colspan]="( cards | async )?.table?.cols" [rowspan]="( cards | async )?.table?.rows">
+      <app-card title="MAP">
+        <app-map></app-map>
+      </app-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

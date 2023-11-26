@@ -1,0 +1,67 @@
+<form fxLayout="column" fxLayoutAlign="start stretch" [formGroup]="resourceForm" autocomplete="off" novalidate
+  (ngSubmit)="submitForm()">
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+
+    <mat-form-field fxFlex="20" appearance="fill">
+      <input matInput type="text" placeholder="Código:" formControlName="code" id="code">
+      <mat-label>Código:</mat-label>
+      <mat-error *ngIf="hasError('code', 'required')">Código e obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="76" appearance="fill">
+      <input matInput type="text" placeholder="Atividade:" formControlName="name" id="name">
+      <mat-label>Atividade:</mat-label>
+      <mat-error *ngIf="hasError('name', 'required')">Atividade e obrigatória</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+
+    <mat-form-field fxFlex="40" appearance="fill">
+      <mat-label>Unidade:</mat-label>
+      <mat-select formControlName="unity">
+        <mat-option *ngFor="let unity of units" [value]="unity">
+          {{unity}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="50" appearance="fill">
+      <input matInput type="text" placeholder="Total:" formControlName="total" id="total">
+      <mat-label>Total:</mat-label>
+      <mat-error *ngIf="hasError('total', 'required')">Total Previsto e obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="15" appearance="fill">
+      <mat-label>Mapeado:</mat-label>
+      <mat-checkbox formControlName="is_mapped" id="is_mapped">Sim</mat-checkbox>
+    </mat-form-field>
+
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+
+    <mat-form-field fxFlex="40" appearance="fill">
+      <input matInput type="text" placeholder="Grupo:" formControlName="group" id="group">
+      <mat-label>Grupo:</mat-label>
+      <mat-error *ngIf="hasError('group', 'required')">Grupo e obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="56" appearance="fill">
+      <mat-label>Etapa:</mat-label>
+      <mat-select formControlName="stage">
+        <mat-option *ngFor="let stage of stages" [value]="stage">
+          {{stage}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card-actions appearance="fill">
+      <button type="submit" mat-raised-button color="primary" [disabled]="!resourceForm.valid">{{buttonText}}</button>
+    </mat-card-actions>
+  </div>
+
+</form>

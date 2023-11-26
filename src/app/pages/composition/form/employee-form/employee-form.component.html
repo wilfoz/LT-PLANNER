@@ -1,0 +1,76 @@
+<form fxLayout="column" fxLayoutAlign="start stretch" [formGroup]="resourceForm" autocomplete="off" novalidate
+  (ngSubmit)="submitForm()">
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <mat-label>Equipe:</mat-label>
+      <mat-select formControlName="team">
+        <mat-option *ngFor="let team of teams$ | async" [value]="team.name">
+          {{team.name | uppercase}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <input matInput type="text" placeholder="Matrícula:" formControlName="registration" id="registration">
+      <mat-label>Matrícula:</mat-label>
+      <mat-error *ngIf="hasError('registration', 'required')">Matrícula e obrigatória</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <input matInput type="text" placeholder="Nome Completo:" formControlName="name" id="name">
+      <mat-label>Nome Completo:</mat-label>
+      <mat-error *ngIf="hasError('name', 'required')">Nome e obrigatório</mat-error>
+      <mat-error *ngIf="hasError('name', 'maxlength')">Mínimo de 6 characters</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <input matInput type="text" placeholder="Função:" formControlName="occupation" id="occupation">
+      <mat-label>Função:</mat-label>
+      <mat-error *ngIf="hasError('occupation', 'required')">Função e obrigatório</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <mat-label>É liderança:</mat-label>
+      <mat-select formControlName="leadership">
+        <mat-option *ngFor="let leader of leaders" [value]="leader">
+          {{leader}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <input matInput type="number" placeholder="Salário:" formControlName="base_salary" id="base_salary">
+      <mat-label>Salário Base:</mat-label>
+      <mat-error *ngIf="hasError('base_salary', 'required')">Salário Base e obrigatório</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <mat-label>Status:</mat-label>
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let st of status" [value]="st">
+          {{st}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card-actions appearance="fill">
+      <button type="submit" mat-raised-button color="primary" [disabled]="!resourceForm.valid" >{{buttonText}}</button>
+    </mat-card-actions>
+  </div>
+
+</form>

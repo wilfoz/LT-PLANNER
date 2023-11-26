@@ -1,0 +1,135 @@
+<form fxLayout="column" fxLayoutAlign="start stretch" [formGroup]="resourceForm" autocomplete="off" novalidate
+  (ngSubmit)="submitForm()">
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <input matInput type="text" placeholder="Torre:" formControlName="tower" id="tower">
+      <mat-label>Torre:</mat-label>
+      <mat-error *ngIf="hasError('tower', 'required')">Torre e obrigatória</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <input matInput type="text" placeholder="Tipo Completo:" formControlName="type" id="type">
+      <mat-label>Tipo:</mat-label>
+      <mat-error *ngIf="hasError('type', 'required')">Tipo e obrigatório</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <input matInput type="text" placeholder="Localidade:" formControlName="locality" id="locality">
+      <mat-label>Localidade:</mat-label>
+      <mat-error *ngIf="hasError('locality', 'required')">Localidade e obrigatório</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <input matInput type="text" placeholder="Coordenadas:" formControlName="coordinates" id="coordinates">
+      <mat-label>Coordenadas:</mat-label>
+      <mat-error *ngIf="hasError('coordinates', 'required')">Coordenadas são obrigatórias</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="48" appearance="fill">
+      <input matInput type="number" placeholder="Vão a vante:" formControlName="forward" id="forward">
+      <mat-label>Vão:</mat-label>
+      <mat-error *ngIf="hasError('forward', 'required')">Vão e obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="48" appearance="fill">
+      <input matInput type="number" placeholder="Altura:" formControlName="height" id="height">
+      <mat-label>Altura:</mat-label>
+      <mat-error *ngIf="hasError('height', 'required')">Altura e obrigatória</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="48" appearance="fill">
+      <input matInput type="number" placeholder="Peso:" formControlName="weight" id="weight">
+      <mat-label>Peso:</mat-label>
+      <mat-error *ngIf="hasError('weight', 'required')">Peso e obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="48" appearance="fill">
+      <input matInput type="number" placeholder="Volume Escavação:" formControlName="excavation_volume"
+        id="excavation_volume">
+      <mat-label>Volume Escavação:</mat-label>
+    </mat-form-field>
+
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="30" appearance="fill">
+      <input matInput type="number" placeholder="Volume Concreto:" formControlName="concrete_volume"
+        id="concrete_volume">
+      <mat-label>Volume Concreto:</mat-label>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="30" appearance="fill">
+      <input matInput type="number" placeholder="Volume Reaterro:" formControlName="backfill_volume"
+        id="backfill_volume">
+      <mat-label>Volume Reaterro:</mat-label>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="30" appearance="fill">
+      <input matInput type="number" placeholder="Total Aço:" formControlName="steel_volume" id="steel_volume">
+      <mat-label>Total Aço:</mat-label>
+    </mat-form-field>
+
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="18" appearance="fill">
+      <input matInput type="text" placeholder="Fundação A:" formControlName="type_of_foundation_A"
+        id="type_of_foundation_A">
+      <mat-label>Tipo Fundação A:</mat-label>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="18" appearance="fill">
+      <input matInput type="text" placeholder="Fundação B:" formControlName="type_of_foundation_B"
+        id="type_of_foundation_B">
+      <mat-label>Tipo Fundação B:</mat-label>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="18" appearance="fill">
+      <input matInput type="text" placeholder="Fundação C:" formControlName="type_of_foundation_C"
+        id="type_of_foundation_C">
+      <mat-label>Tipo Fundação C:</mat-label>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="18" appearance="fill">
+      <input matInput type="text" placeholder="Fundação D:" formControlName="type_of_foundation_D"
+        id="type_of_foundation_D">
+      <mat-label>Tipo Fundação D:</mat-label>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="18" appearance="fill">
+      <input matInput type="text" placeholder="Fundação MC:" formControlName="type_of_foundation_MC"
+        id="type_of_foundation_MC">
+      <mat-label>Tipo Fundação MC:</mat-label>
+    </mat-form-field>
+
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <mat-label>Embargo:</mat-label>
+      <mat-select formControlName="embargo">
+        <mat-option *ngFor="let embargo of embargoes" [value]="embargo">
+          {{embargo}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card-actions appearance="fill">
+      <button type="submit" mat-raised-button color="primary" [disabled]="!resourceForm.valid">{{buttonText}}</button>
+    </mat-card-actions>
+  </div>
+
+</form>

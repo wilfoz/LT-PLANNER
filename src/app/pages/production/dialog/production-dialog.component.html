@@ -1,0 +1,24 @@
+<div fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap>
+  <mat-accordion>
+    <div>
+      <button mat-icon-button (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Produção
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <app-production-form
+        [production]="production"
+        [dialog]="dialog"
+      ></app-production-form>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+

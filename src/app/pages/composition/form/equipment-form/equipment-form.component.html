@@ -1,0 +1,72 @@
+<form fxLayout="column" fxLayoutAlign="start stretch" [formGroup]="resourceForm" autocomplete="off" novalidate
+  (ngSubmit)="submitForm()">
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <mat-label>Equipe:</mat-label>
+      <mat-select formControlName="team">
+        <mat-option *ngFor="let team of teams$ | async" [value]="team.name">
+          {{team.name | uppercase}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <input matInput type="text" placeholder="Modelo:" formControlName="model" id="model">
+      <mat-label>Modelo:</mat-label>
+      <mat-error *ngIf="hasError('model', 'required')">Modelo e obrigatório</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <input matInput type="text" placeholder="Fabricante:" formControlName="manufacturer" id="manufacturer">
+      <mat-label>Fabricante:</mat-label>
+      <mat-error *ngIf="hasError('manufacturer', 'required')">Fabricante e obrigatório</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <input matInput type="text" placeholder="Placa:" formControlName="license_plate" id="license_plate">
+      <mat-label>Placa:</mat-label>
+      <mat-error *ngIf="hasError('license_plate', 'required')">Placa e obrigatório</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <input matInput type="text" placeholder="Fornecedor:" formControlName="provider" id="provider">
+      <mat-label>Fornecedor:</mat-label>
+      <mat-error *ngIf="hasError('provider', 'required')">Fornecedor Base e obrigatório</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <input matInput type="number" placeholder="Custo:" formControlName="cost" id="cost">
+      <mat-label>Custo:</mat-label>
+      <mat-error *ngIf="hasError('cost', 'required')">Custo Base e obrigatório</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+    <mat-form-field fxFlex="100" appearance="fill">
+      <mat-label>Status:</mat-label>
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let st of status" [value]="st">
+          {{st}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card-actions appearance="fill">
+      <button type="submit" mat-raised-button color="primary" [disabled]="!resourceForm.valid">Save</button>
+    </mat-card-actions>
+  </div>
+
+</form>

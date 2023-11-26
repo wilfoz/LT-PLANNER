@@ -1,0 +1,23 @@
+.container {
+  height: 100%;
+  width: 100%;
+  padding: 8px;
+}
+
+table {
+  width: 98%;
+  max-height: 600px;
+  margin: 8px;
+}
+
+button {
+  margin: 4px 4px;
+}
+
+.heading-list {
+  margin-left: 8px;
+}
+
+.heading-buttons {
+  margin-right: 15px;
+}

@@ -1,0 +1,15 @@
+<div>
+  <div class="chartContainer">
+    <div style="display: block">
+      <canvas baseChart
+        width="700" height="400"
+        [data]="barChartData"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [type]="barChartType"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)">
+      </canvas>
+    </div>
+  </div>
+</div>

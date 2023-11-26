@@ -1,0 +1,15 @@
+
+<mat-nav-list >
+  <div class="profile-card">
+      <img src="./assets/img/user-svg.svg" alt="User LT">
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <h2 matSubheader>Pages</h2>
+
+  <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+
+  <mat-divider></mat-divider>
+
+</mat-nav-list>

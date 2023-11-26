@@ -1,0 +1,159 @@
+<!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+
+<div class="container">
+
+  <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="20">
+
+    <div class="heading-list" fxFlex="62%" fxFlexAlign="start">
+      <h1>
+        Lista de construção
+      </h1>
+    </div>
+
+    <div class="heading-buttons" fxFlexAlign="end">
+      <button mat-raised-button color="primary" matTooltip="Cadastrar novo item" (click)="add()">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button type="button" mat-raised-button color="primary" matTooltip="Cadastrar lista de construção"
+        (click)="fileInput.click()">
+        <mat-icon>upload_file</mat-icon>
+      </button>
+      <input hidden type="file" appReadExcel #readexcel="readexcel" #fileInput
+        (eventEmitter)="dataFromEventEmitter($event)" />
+
+      <mat-form-field appearance="outline">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <table mat-table [dataSource]="resources" class="mat-elevation-z8" matSort>
+    <!-- Item Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> #Item </th>
+      <td mat-cell *matCellDef="let element"> {{ element.code }} </td>
+    </ng-container>
+
+    <!-- Tower Column -->
+    <ng-container matColumnDef="tower">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by tower"> Torre </th>
+      <td mat-cell *matCellDef="let element"> {{element.tower}} </td>
+    </ng-container>
+
+    <!-- Type Column -->
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by type"> Tipo </th>
+      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
+
+    <!-- Locality Column -->
+    <ng-container matColumnDef="locality">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by locality"> Canteiro </th>
+      <td mat-cell *matCellDef="let element"> {{element.locality}} </td>
+    </ng-container>
+
+    <!-- Coordinates Column -->
+    <ng-container matColumnDef="coordinates">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by coordinates"> Coordenadas
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.coordinates}} </td>
+    </ng-container>
+
+    <!-- Forward Column -->
+    <ng-container matColumnDef="forward">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by forward"> Vão vante </th>
+      <td mat-cell *matCellDef="let element"> {{element.forward}} </td>
+    </ng-container>
+
+    <!-- Height Column -->
+    <ng-container matColumnDef="height">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by height"> Altura </th>
+      <td mat-cell *matCellDef="let element"> {{element.height}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight"> Peso </th>
+      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    </ng-container>
+
+    <!-- Excavation_volume Column -->
+    <ng-container matColumnDef="excavation_volume">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by excavation_volume"> V.
+        Escavação (m³)</th>
+      <td mat-cell *matCellDef="let element"> {{element.excavation_volume}} </td>
+    </ng-container>
+
+    <!-- Concrete_volume Column -->
+    <ng-container matColumnDef="concrete_volume">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by concrete_volume"> V. Concreto
+        (m³)</th>
+      <td mat-cell *matCellDef="let element"> {{element.concrete_volume}} </td>
+    </ng-container>
+
+    <!-- Backfill_volume Column -->
+    <ng-container matColumnDef="backfill_volume">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by backfill_volume"> V. Reaterro
+        (m³)</th>
+      <td mat-cell *matCellDef="let element"> {{element.backfill_volume}} </td>
+    </ng-container>
+
+    <!-- Steel_volume Column -->
+    <ng-container matColumnDef="steel_volume">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by steel_volume"> V. Aço (Ton)
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.steel_volume}} </td>
+    </ng-container>
+
+    <!-- Embargo Column -->
+    <ng-container matColumnDef="embargo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by embargo"> Embargo</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-chip-list>
+          <mat-chip [ngStyle]="{'background-color': '#6495ED'}"
+            *ngIf="element.embargo == 'LIBERADO'; else otherChip">{{element.embargo}}</mat-chip>
+
+          <ng-template #otherChip>
+            <mat-chip [ngStyle]="{'background-color': '#B22222'}">{{element.embargo}}</mat-chip>
+          </ng-template>
+        </mat-chip-list>
+      </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="update">
+      <th mat-header-cell *matHeaderCellDef> Update </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="accent" matTooltip="edit a leader">
+          <mat-icon (click)="edit(element)" aria-label="edit leader">edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef> Delete </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="warn" (click)="deleteResource(element)">
+          <mat-icon class="mat-18">delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+
+  <mat-paginator (page)="handlePageEvent($event)" [length]="length" [pageSize]="pageSize"
+    [showFirstLastButtons]="showFirstLastButtons" [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndex"
+    aria-label="Select page">
+  </mat-paginator>
+</div>
